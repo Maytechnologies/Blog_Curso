@@ -9,3 +9,4 @@ class Estudiante extends Model
 {
     use HasFactory;
 }
+//modelo para controlar las solicitudes a la db
