@@ -9,3 +9,6 @@ class Curso extends Model
 {
     use HasFactory;
 }
+
+//agregando contenidos
+
