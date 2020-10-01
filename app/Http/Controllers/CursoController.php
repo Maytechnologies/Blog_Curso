@@ -1,0 +1,108 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Curso;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Http\Request;
+use Symfony\Contracts\Service\Attribute\Required;
+
+class CursoController extends Controller
+{
+  
+    public function index()
+    {
+        $cursos = Curso::OrderBy('id','desc')->paginate();
+        return view('cursos.index', compact('cursos'));
+    }
+
+    
+
+    public function create()
+    {
+        return view('cursos.create');
+    }
+
+    
+
+
+    public function store(Request $request)
+    {
+    //validaciones para los input del formulario
+
+    $request->validate([
+       'name'=>'required|max:15',
+       'category'=>'required',
+       'description'=>'required|min:10',
+       'teacher'=>'required'
+
+    //una vez editados los requerimientos para nuestras validaciones
+    // pasamos al formulario que envia este post > la vista create.blade.php
+
+
+    ]);
+        $curso = new Curso();
+
+        $curso->name=$request->name;
+        $curso->category=$request->category;
+        $curso->description=$request->description;
+        $curso->teacher=$request->teacher;
+
+        //return $curso;
+
+        $curso->save();
+
+        return redirect()->route('cursos.show', $curso);
+
+    }
+
+    
+
+
+    public function show($id)
+
+    {
+        $curso = Curso::find($id);
+
+        return view('cursos.show', compact('curso'));
+    }
+
+    
+
+
+
+    public function edit($id)
+    {
+        $curso = Curso::find($id);
+
+        
+        return view('cursos.edit', compact('curso'));
+    }
+
+
+
+
+
+
+    public function update(Request $request, $id)
+    {
+           $curso = Curso::find($id);
+           $curso->name=$request->name;
+           $curso->category=$request->category;
+           $curso->description=$request->description;
+           $curso->teacher=$request->teacher;
+           
+           $curso->update();
+
+           return redirect()->route('cursos.show', compact('curso'));
+
+    }
+
+    
+
+
+    public function destroy($cursos)
+    {
+        return view('cursos.destroy', compact('cursos'));
+    }
+}
