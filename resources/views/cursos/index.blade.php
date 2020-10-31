@@ -8,11 +8,12 @@
 <div class="container">
 
     <h4>Bienvenido se encuentra en la sesion principal</h4>
+    
      <br>
 
     <a href="{{route('cursos.create')}}">Registrar Curso</a>
 
-    <br>
+   
 
     <ul>
     

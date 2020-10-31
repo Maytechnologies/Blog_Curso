@@ -19,4 +19,10 @@
 <p></i>{{$curso->description}}  Categoria: {{$curso->category}}</p>
 <p> Profesor: {{$curso->teacher}}</p>
 
+<br>
+
+<a href="{{route('cursos.destroy', $curso)}}">Eliminar</a>
+
+<br>
+
 @endsection

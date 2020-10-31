@@ -7,10 +7,22 @@
     <title>@yield('titulo')</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-
+<!--Section of Stylus-->
+<style>
+    .active{
+        color: red;
+        font-weight: bold;
+    }
+</style>
 <body>
 
+    <!--Header-->
+    @include('layouts.partials.header')
+   <br>
+   <!--Content of the page-->
     @yield('content')
 
+    <!--Section of Footer-->
+    @include('layouts.partials.footer')
 </body>
 </html>

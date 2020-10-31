@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCurso;
 use App\Models\Curso;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Symfony\Contracts\Service\Attribute\Required;
+
 
 class CursoController extends Controller
 {
@@ -26,21 +28,9 @@ class CursoController extends Controller
     
 
 
-    public function store(Request $request)
+    public function store(StoreCurso $request)
     {
-    //validaciones para los input del formulario
-
-    $request->validate([
-       'name'=>'required|max:15',
-       'category'=>'required',
-       'description'=>'required|min:10',
-       'teacher'=>'required'
-
-    //una vez editados los requerimientos para nuestras validaciones
-    // pasamos al formulario que envia este post > la vista create.blade.php
-
-
-    ]);
+   
         $curso = new Curso();
 
         $curso->name=$request->name;
@@ -103,6 +93,7 @@ class CursoController extends Controller
 
     public function destroy($cursos)
     {
+        
         return view('cursos.destroy', compact('cursos'));
     }
 }
